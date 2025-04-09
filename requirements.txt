@@ -1,2 +1,2 @@
 ultralytics
-fastapi
+fastapi[standard]
