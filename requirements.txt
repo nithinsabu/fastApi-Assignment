@@ -1,5 +1,5 @@
-torch==2.2.2+cpu
-torchvision==0.17.2+cpu
+torch==2.6.0+cpu
+torchvision==0.21.0+cpu
 ultralytics
 fastapi[standard]
 pytest
