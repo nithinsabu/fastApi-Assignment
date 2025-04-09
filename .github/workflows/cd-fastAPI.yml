@@ -1,4 +1,4 @@
-name: Deploy .NET API
+name: Deploy fastAPI
 on:
   push:
     branches:
