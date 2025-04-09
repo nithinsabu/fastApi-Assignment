@@ -27,5 +27,4 @@ jobs:
           -r /code/requirements.txt
 
       - name: Run Tests
-        working-directory: 
         run: pytest
