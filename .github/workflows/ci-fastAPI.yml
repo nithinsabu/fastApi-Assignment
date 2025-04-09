@@ -24,7 +24,7 @@ jobs:
         run: |
           pip install --no-cache-dir --upgrade \
           --extra-index-url https://download.pytorch.org/whl/cpu \
-          -r /code/requirements.txt
+          -r /requirements.txt
 
       - name: Run Tests
         run: pytest
