@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image</title>
+</head>
+<script>
+    async function upload() {
+        const file = document.getElementById('inp').files[0];
+        if (!file){
+            alert("SELECT FILE");
+            return;
+        }
+        const form = new FormData();
+        form.append("file", file);
+        const response = await fetch("/upload", {
+            method: "POST",
+            body: form
+        })
+        const table = document.getElementById('table')
+        table.innerHTML="";
+        const head = table.insertRow()
+        head.innerHTML = "<th>Object</th><th>Confidence</th>"
+        const result = await response.json();
+        for (let i of Object.keys(result)){
+            const row = table.insertRow();
+            row.innerHTML = `<td>${i}</td><td>${result[i]}</td>`;
+        }
+
+    }
+</script>
+<body>
+        <h1>Object Detector</h1>
+        <br/>
+        <input type="file" id="inp">
+        <button onclick="upload()">Upload</button>
+        <table id="table" border="1"></table>
+</body>
+</html>
