@@ -1,4 +1,3 @@
-ultralytics
 fastapi[standard]
 pytest
 requests
