@@ -1,7 +1,5 @@
 FROM ultralytics/ultralytics:latest-cpu
 
-# RUN apt-get update && apt-get install -y libgl1-mesa-glx
-
 WORKDIR /code
 
 COPY ./requirements-docker.txt /code/requirements.txt

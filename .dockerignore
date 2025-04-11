@@ -1,0 +1,8 @@
+__pycache__
+.github
+.pytest_cache
+venv
+.gitignore
+requirements.txt
+test_app.py
+yolo11n.pt
