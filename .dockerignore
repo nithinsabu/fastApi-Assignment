@@ -8,4 +8,8 @@ test_app.py
 *.pt
 *cache*
 *val2017*
+<<<<<<< HEAD
 /model
+=======
+
+>>>>>>> 2bcd42cfe04f3254e029c4befc9dd7d5d76143a2
