@@ -3,6 +3,7 @@ from fastapi.responses import HTMLResponse
 from ultralytics import YOLO
 import numpy as np
 import cv2
+import os
 app = FastAPI()
 model = YOLO("yolo11n.pt")
 
@@ -11,7 +12,7 @@ model = YOLO("yolo11n.pt")
 async def root():
     # results = model.predict("./bus.jpg", save=True)
     # return_object = results[0].to_json()
-    with open('index.html', 'r') as f:
+    with open(os.path.join(os.path.dirname(__file__),"static", 'index.html'), 'r') as f:
         html_content = f.read()
     return HTMLResponse(content=html_content, status_code=200)
 
