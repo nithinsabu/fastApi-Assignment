@@ -8,7 +8,12 @@
     <script>
         async function upload() {
             const file = document.getElementById("inp").files[0];
-            if (!file){
+            const allowedMimeTypes = ["image/bmp", "image/dng", "image/jpeg", "image/mpo", "image/png", "image/tiff", "image/webp", "image/x-portable-anymap", "image/heic"];
+            if (!allowedMimeTypes.includes(file.type) || file.size() > 5 * 1024 * 1024) {
+                alert("Invalid Image Extension");
+                return;
+            }
+            if (!file) {
                 alert("SELECT FILE");
                 return;
             }
@@ -18,7 +23,7 @@
                 method: "POST",
                 body: form,
             });
-            if (response.status == 400 || response.status==500) {
+            if (response.status == 400 || response.status == 500) {
                 const result = await response.json();
                 // console.log(result);
                 alert(result.detail ? result.detail : "ERROR in server");
