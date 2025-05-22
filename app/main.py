@@ -25,6 +25,8 @@ async def root():
 @app.post("/upload/", response_model=Union[Dict[str, float], ErrorResponse])
 async def create_upload_file(file: UploadFile):
     contents = await file.read()
+    if not contents or len(contents)> 5*1024*1024:
+        raise HTTPException(status_code=400, detail="Corrupted Image file")
     nparr = np.frombuffer(contents, np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     if img is None:

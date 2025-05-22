@@ -58,27 +58,24 @@ def test_model(save:bool = True):
         test_data_file_path[yolo_categories[int(i)]]["negative"] = [os.path.join(test_images_dir, filename.split('/')[-1]) for filename in test_data[i]["negative"]]
     
     #testing
-    # test_results = {cls: {} for cls in test_data_file_path}
     TP = FN = TN = FP = 0
-    for cls in test_data_file_path:
-        results_for_positive = model.predict(test_data_file_path[cls]["positive"])
+    for cls, data in test_data_file_path.items():
+        results_for_positive = model.predict(data["positive"])
         for result in results_for_positive:
             object_classes = list(result.boxes.cls)
             if cls in object_classes:
                 TP+=1
             else:
                 FN+=1
-        # print(f"Class {cls}: TP={TP} FN={FN}")
 
-        results_for_negative = model.predict(test_data_file_path[cls]["negative"])
+        results_for_negative = model.predict(data["negative"])
         for result in results_for_negative:
             object_classes = list(result.boxes.cls)
             if cls in object_classes:
                 FP+=1
             else:
                 TN+=1
-        # print(f"Class {cls}: FP={FP} TN={TN}")
-        # test_results[cls] = {"TP": TP, "TN": TN, "FP": FP, "FN": FN}
+
     recall = TP/(TP+FN)
     precision = TP/(TP+FP)
     accuracy = (TP+TN)/(TP+TN+FN+FP)
